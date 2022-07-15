@@ -1,0 +1,159 @@
+# len
+def listlen():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    if user == "":
+        results = 0
+    else:
+        split = user.split(",")
+        counter = 0
+        for g in split:
+            counter += 1
+        results = counter
+    print(results)
+    return results
+listlen()
+
+# max
+def listmax():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    if user == "":
+        results = "There is no max"
+    else:
+        split = user.split(",")
+        counter = 0
+        for g in split:
+            counter += 1
+        for i in range(counter):
+            if i == 0:
+                results = split[int(i)]
+            if i > 0:
+                if results >= split[int(i)]:
+                    continue
+                elif split[int(i)] > split[int(i)-1]:
+                    results = split[int(i)]
+                else:
+                    results = split[int(i)-1]
+    print(results)
+    return results
+listmax()
+
+# copy
+def listcopy():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    if user == "":
+        results = []
+    else:
+        split = user.split(",")
+        results = split
+        counter = 0
+        for g in split:
+            counter += 1
+        for i in range(counter):
+            split[int(i)] = int(split[int(i)])
+    print(results)
+    return results
+listcopy()
+
+# append
+def listappend():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    add = input("Enter something new to add to the list: ")
+    add = [add]
+    if user == "":
+        results = [int(add[0])]
+    else:
+        split = user.split(",")
+        results = split
+        results = split + add
+        counter = 0
+        for g in results:
+            counter += 1
+        for i in range(counter):
+            results[int(i)] = int(results[int(i)])
+    print(results)
+    return results
+listappend()
+
+# function: listinsert
+def listinsert():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    add = input("Enter something new to add to the list: ")
+    if add.isnumeric():
+        s_add = int(add)
+    else:
+        s_add = add
+    loop = 0
+    first = 1
+    while loop == 0:
+        question = "Enter a position to insert the new datum " + str(add) + ": "
+        pos = input(question)
+        if pos.isnumeric():
+            pos = int(pos)
+            go = 1
+        else:
+            print("Invalid position, try again.")
+            go = 2
+        if go == 1:
+            if first == 1:
+                add = [str(add)]
+                split = user.split(",")
+                results = split + add
+                first = 2
+            counter = 0
+            for g in results:
+                counter += 1
+            if pos < 0 or pos > counter-1:
+                print("Invalid position, try again.")
+            else:
+                loop = 1
+    #making a copy
+    copy = [''] * counter
+    for i in range(counter):
+        copy[int(i)] = results[int(i)]
+    #inserting
+    for i in range(counter):
+        if i < pos:
+            results[int(i)] = int(copy[int(i)])
+        elif i == pos:
+            results[int(i)] = s_add
+        else:
+            results[int(i)] = int(copy[int(i)-1])
+    print(results)
+    return results
+listinsert()
+
+# listremove
+def listremove():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    rem = input("Enter something to remove from the list: ")
+    split = user.split(",")
+    counter = 0
+    for g in split:
+        counter += 1
+    results = [''] * (counter-1)
+    for i in range(counter):
+        if split[int(i)] == rem:
+            pass
+        elif int(split[int(i)]) < int(rem):
+            results[int(i)] = int(split[int(i)])
+        else:
+            results[int(i-1)] = int(split[int(i)])
+    print(results)
+    return results
+listremove()
+
+# listreverse
+def listreverse():
+    user = input("Create a list of numbers and separate them by commas (x,y,z): ")
+    split = user.split(",")
+    counter = 0
+    for g in split:
+        counter += 1
+    results = [''] * counter
+    loop = 0
+    for i in split[counter::-1]:
+        results[loop] = int(i)
+        loop += 1
+    print(results)
+    return results
+listreverse()
